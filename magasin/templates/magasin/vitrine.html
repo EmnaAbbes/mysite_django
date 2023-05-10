@@ -1,0 +1,32 @@
+{% extends 'magasin/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<form method='POST' class="post-form">
+    {% csrf_token %}
+    <div style="overflow:scroll; border:#afa6a6 3px solid;" class="mx-5 mt-4 rounded">
+        <table>
+            <tr>
+                {% for article in list %}
+                <td class="px-3">
+                    <img src='/media/{{article.Img}}' class="rounded float-start" height="200px" width="200px" alt="">
+                    <figcaption class="figure-caption">
+                        {{article.libelle}}
+                    </figcaption>
+                    <p> {{article.prix}} DT. </p>
+                </td>
+                {% endfor %}
+            </tr>
+        </table>
+    </div>
+</form>
+<div class="col-md-12 text-center mt-5">
+    <h2 class="text-danger">Ajouter produit</h2>
+</div>
+<form method='POST' enctype='multipart/form-data' class="post-form ms-5 me-5 mt-3 mb-3 p-4 rounded"
+    style="border:#afa6a6 2px solid; ">
+    {% csrf_token %}
+    {{ form|crispy}}
+    <button type="sumit" class="btn btn-danger mb-3 ">Enregistrer</button>
+</form>
+{% endblock %}

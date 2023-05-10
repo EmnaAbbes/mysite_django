@@ -1,0 +1,28 @@
+{% extends "magasin/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h2 class="m-5">S'inscrire</h2>
+<form method="post">
+    {% csrf_token %}
+    <table class="ms-5" style="border:#afa6a6 2px solid; ">
+        <tr>
+            <td class="p-4">
+                {{ form|crispy}}
+            </td>
+        </tr>
+        {% for error in field.errors %}
+        <tr>
+            <td></td>
+            <td class="alert alert-danger">{{ error }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <button type="submit" class="ms-5 mt-3 btn btn-danger">s'inscrire</button>
+</form>
+<div class="ms-5 mt-3 mb-3">
+    <small>
+        Déjà inscrit.e?
+        <a href="{% url 'login' %}" class="btn btn-danger">Se connecter</a>
+    </small>
+</div>
+{% endblock %}

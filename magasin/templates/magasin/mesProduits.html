@@ -1,0 +1,27 @@
+{% extends 'magasin/base.html' %}
+
+{% block content %}
+<!-- body -->
+<div class="container-fluid mt-5">
+    <div class="col-md-12 text-center">
+    <div class="row">
+       
+        <!-- all products -->
+        <div id='products' class="col-lg-12">
+            <div class="row mx-5">
+                    {% for product in products %}
+                    <div class="card mx-5 mb-5" style="width:300px;">
+                        <div class="text-center" id={{product.id}} style="width: 18rem;">
+                            <img src="/media/{{product.Img}}" style="width:210px;height:210px;">
+                            <div>
+                                <p class="text-secondary fs-5 text-center fw-bold">{{product.libelle}}</p>
+                                <p class=" mb-5 text-center text-secondary fst-italic">{{product.desciption}}</p>
+                            </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
