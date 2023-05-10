@@ -142,4 +142,4 @@ STATICFILES_DIRS = STATICFILES_DIRS = [
     BASE_DIR / "static", '/var/www/static/', ]
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
-
+SESSION_COOKIE_AGE = 3600
