@@ -6,6 +6,8 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+
 @login_required
 def index(request):
     if request.method == "POST" :
@@ -17,7 +19,6 @@ def index(request):
         form = ProduitForm()
     list=Produit.objects.all()
     return render(request,'magasin/vitrine.html',{'list':list,'form':form})
-
 def myProducts(request):
     products = Produit.objects.all()
     context={'products':products}

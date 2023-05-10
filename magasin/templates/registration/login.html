@@ -1,23 +1,20 @@
 {% extends "magasin/base.html" %}
+{% load crispy_forms_tags %}
 {% block content %}
+<body>
+<div style="border: #afa6a6 2px solid;" class=" mt-5 rounded p-4 w-50 text-center loginForm ms-5 ">
 <h2>Se connecter </h2>
 <div>
-    <form method="post">
+    <form method="post" class="p-3">
         {% csrf_token %}
         {% if form.non_field_errors %}
         {% for error in form.non_field_errors %}
         <p class="alert alert-danger">{{ error }}</p>
         {% endfor %}
         {% endif %}
-        <table>
-            {% for field in form %}
-            <tr>
-                <td>{{ field.label_tag }}</td>
-                <td>{{ field }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-        <button type="submit">se connecter</button>
+        
+                <div class="">{{ form|crispy }}</div>
+        <button type="submit" class="btn btn-danger mt-3">se connecter</button>
     </form>
 </div>
 <div>
@@ -31,4 +28,6 @@
         </a>
     </small>
 </div>
+</div>
+</body>
 {% endblock %}
