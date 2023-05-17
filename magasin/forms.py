@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Produit,Fournisseur
+from .models import Produit,Fournisseur,Commande
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
@@ -11,7 +11,10 @@ class FournisseurForm(ModelForm):
     class Meta :
         model = Fournisseur
         fields = "__all__" 
-
+class CommandeForm(ModelForm):
+    class Meta :
+        model = Commande
+        fields = "__all__" 
 class UserRegistrationForm(UserCreationForm):
     first_name = forms.CharField(label='Prénom')
     last_name = forms.CharField(label='Nom')

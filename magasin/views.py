@@ -1,7 +1,7 @@
-from .models import Produit,Fournisseur,Categorie
+from .models import Produit,Fournisseur,Categorie,Commande
 from django.shortcuts import redirect,render
 from django.http import HttpResponseRedirect
-from .forms import ProduitForm, FournisseurForm,UserRegistrationForm
+from .forms import ProduitForm, FournisseurForm,UserRegistrationForm,CommandeForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
@@ -34,6 +34,17 @@ def nouveauFournisseur(request):
         form = FournisseurForm()
     list=Fournisseur.objects.all()
     return render(request,'magasin/fournisseur.html',{'list':list,'form':form}) 
+def nouveauCommande(request):
+    if request.method == "POST" :
+        form = CommandeForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/magasin')
+    else :
+        form = CommandeForm()
+    list=Commande.objects.all()
+    return render(request,'magasin/commande.html',{'list':list,'form':form}) 
+
 @login_required
 def home(request):
         context={'val':"Menu Acceuil"}

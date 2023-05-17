@@ -1,0 +1,33 @@
+{% extends 'magasin/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<form method='POST' class="post-form">
+    {% csrf_token %}
+    <div class="container">
+        <div style="overflow:scroll; border: #afa6a6 1px solid;" class="mx-5 mt-4 rounded">
+            <table>
+                <tr>
+                    {% for f in list %}
+                    <td class="px-3">
+                       <p>Commande n° {{forloop.counter}}</p> 
+                        <p> {{f.dateCde}} </p>
+                        <p> {{f.totalCde}}</p>
+                        <p>Table</p>
+                    </td>
+                    {% endfor %}
+                </tr>
+            </table>
+        </div>
+</form>
+</div>
+<div class="col-md-12 text-center mt-4">
+    <h2 class="text-danger">Ajouter Commande</h2>
+</div>
+<form method='POST' class="post-form ms-5 me-5 mt-3 mb-3 p-4 rounded" 
+    style="border:#afa6a6 2px solid; ">
+    {% csrf_token %}
+    {{ form|crispy}}
+    <button type="sumit" class="btn btn-danger">Enregistrer</button>
+</form>
+{% endblock %}
